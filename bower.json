@@ -12,7 +12,10 @@
   ],
   "dependencies": {
     "purescript-prelude": "^0.1",
-    "purescript-foldable-traversable": "~0.4.2"
+    "purescript-foldable-traversable": "~0.4.2",
+    "purescript-arrays": "~0.4.4",
+    "purescript-strings": "~0.7.1",
+    "purescript-unicode": "~0.0.1"
   },
   "repository": {
     "type": "git",
