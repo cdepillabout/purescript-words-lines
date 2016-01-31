@@ -30,8 +30,19 @@ words = map String.fromCharArray <<< go <<< String.toCharArray
         case Array.uncons $ Array.dropWhile isSpace s of
             Nothing -> []
             Just { head: head, tail: tail } ->
-                let xxx = break isSpace (head `Array.cons` tail)
-                in xxx.init `Array.cons` go xxx.rest
+                let withBreaks = break isSpace (head `Array.cons` tail)
+                in withBreaks.init `Array.cons` go withBreaks.rest
+
+lines :: String -> Array String
+lines = map String.fromCharArray <<< go <<< String.toCharArray
+  where
+    go :: Array Char -> Array (Array Char)
+    go s =
+        case Array.uncons s of
+            Nothing -> []
+            Just _ ->
+                let withBreaks = break (== '\n') s
+                in withBreaks.init `Array.cons` go withBreaks.rest
 
 break :: forall a . (a -> Boolean) -> Array a -> { init :: (Array a), rest :: (Array a) }
 break p = Array.span (not <<< p)
