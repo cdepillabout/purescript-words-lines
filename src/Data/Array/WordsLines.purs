@@ -1,12 +1,12 @@
 
 module Data.Array.WordsLines where
 
-import Prelude
+import Prelude (not, (<<<), map, (==), ($), (<>))
 
 import Data.Array as Array
-import Data.Char.Unicode
-import Data.Foldable
-import Data.Maybe
+import Data.Char.Unicode (isSpace)
+import Data.Foldable (foldl)
+import Data.Maybe (Maybe(..))
 import Data.String as String
 
 unwords :: Array String -> String
@@ -42,7 +42,14 @@ lines = map String.fromCharArray <<< go <<< String.toCharArray
             Nothing -> []
             Just _ ->
                 let withBreaks = break (== '\n') s
-                in withBreaks.init `Array.cons` go withBreaks.rest
+                in withBreaks.init `Array.cons` go (stripNewLine withBreaks.rest)
+
+    stripNewLine :: Array Char -> Array Char
+    stripNewLine s =
+        case Array.uncons s of
+             Nothing -> []
+             Just { head: '\n', tail: tail } -> tail
+             Just { head: head, tail: tail } -> head `Array.cons` tail
 
 break :: forall a . (a -> Boolean) -> Array a -> { init :: (Array a), rest :: (Array a) }
 break p = Array.span (not <<< p)

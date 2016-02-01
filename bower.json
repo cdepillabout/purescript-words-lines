@@ -20,5 +20,8 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/cdepillabout/purescript-words-lines.git"
+  },
+  "devDependencies": {
+    "purescript-super-spec": "~0.8.3"
   }
 }
