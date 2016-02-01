@@ -10,6 +10,10 @@ import Data.Foldable (foldl)
 import Data.Maybe (Maybe(..))
 import Data.String as String
 
+-- | `unwords` is an inverse operation to `words`.
+-- | It joins words with separating spaces.
+-- |
+-- | However, `unlines <<< lines` is not an isomorphism.
 unwords :: List String -> String
 unwords = foldl f ""
   where
@@ -17,12 +21,18 @@ unwords = foldl f ""
     f "" a = a
     f acc a = acc <> " " <> a
 
+-- | 'unlines' is an inverse operation to `lines`.
+-- | It joins lines, after appending a terminating newline to each.
+-- |
+-- | However, `unlines <<< lines` is not an isomorphism.
 unlines :: List String -> String
 unlines = foldl f ""
   where
     f :: String -> String -> String
     f acc a = acc <> a <> "\n"
 
+-- | `words` breaks a string up into a list of words, which were delimited
+-- | by white space.
 words :: String -> List String
 words = map fromCharList <<< go <<< toCharList
   where
@@ -34,6 +44,8 @@ words = map fromCharList <<< go <<< toCharList
                 let withBreaks = break isSpace (head `List.Cons` tail)
                 in withBreaks.init `List.Cons` go withBreaks.rest
 
+-- | `lines` breaks a string up into a list of strings at newline
+-- | characters.  The resulting strings do not contain newlines.
 lines :: String -> List String
 lines = map fromCharList <<< go <<< toCharList
   where
@@ -52,9 +64,12 @@ lines = map fromCharList <<< go <<< toCharList
              Just { head: '\n', tail: tail } -> tail
              Just { head: head, tail: tail } -> head `List.Cons` tail
 
+-- | `break p as` is `span (not <<< p) as`.
 break :: forall a . (a -> Boolean) -> List a -> { init :: (List a), rest :: (List a) }
 break p = List.span (not <<< p)
 
+-- | Changes a string to a `List` of `Char`s.  This is similar to
+-- `toCharArray`.
 toCharList :: String -> List Char
 toCharList s =
     case String.uncons s of
@@ -62,5 +77,7 @@ toCharList s =
         Just { head: head, tail: tail } ->
             head `List.Cons` toCharList tail
 
+-- | Changes a `List` of `Char`s to a `String`. This is similar to
+-- `fromCharArray`.
 fromCharList :: List Char -> String
 fromCharList = foldl (\accum a -> accum <> String.singleton a) ""
