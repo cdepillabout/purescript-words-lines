@@ -1,6 +1,6 @@
 {
   "name": "purescript-words-lines",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "moduleType": [
     "node"
   ],
@@ -12,10 +12,11 @@
   ],
   "dependencies": {
     "purescript-prelude": "^0.1",
-    "purescript-foldable-traversable": "~0.4.2",
-    "purescript-arrays": "~0.4.4",
-    "purescript-strings": "~0.7.1",
-    "purescript-unicode": "~0.0.1"
+    "purescript-foldable-traversable": "^0.4",
+    "purescript-arrays": "^0.4",
+    "purescript-strings": "^0.7",
+    "purescript-unicode": "^0.0.1",
+    "purescript-lists": "^0.7"
   },
   "repository": {
     "type": "git",

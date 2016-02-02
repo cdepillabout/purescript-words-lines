@@ -1,6 +1,6 @@
 {
   "name": "purescript-words-lines",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "words and lines functions for purescript",
   "main": "index.js",
   "scripts": {
