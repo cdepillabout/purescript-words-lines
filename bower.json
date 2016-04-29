@@ -1,6 +1,7 @@
 {
   "name": "purescript-words-lines",
   "version": "0.0.4",
+  "license": "BSD-3-Clause",
   "moduleType": [
     "node"
   ],
