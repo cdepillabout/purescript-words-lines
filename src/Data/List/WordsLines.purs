@@ -69,7 +69,7 @@ break :: forall a . (a -> Boolean) -> List a -> { init :: (List a), rest :: (Lis
 break p = List.span (not <<< p)
 
 -- | Changes a string to a `List` of `Char`s.  This is similar to
--- `toCharArray`.
+-- | `toCharArray`.
 toCharList :: String -> List Char
 toCharList s =
     case String.uncons s of
@@ -78,6 +78,6 @@ toCharList s =
             head `List.Cons` toCharList tail
 
 -- | Changes a `List` of `Char`s to a `String`. This is similar to
--- `fromCharArray`.
+-- | `fromCharArray`.
 fromCharList :: List Char -> String
 fromCharList = foldl (\accum a -> accum <> String.singleton a) ""

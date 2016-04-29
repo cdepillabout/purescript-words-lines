@@ -55,6 +55,7 @@ toCharList :: String -> List Char
 ```
 
 Changes a string to a `List` of `Char`s.  This is similar to
+`toCharArray`.
 
 #### `fromCharList`
 
@@ -63,5 +64,6 @@ fromCharList :: List Char -> String
 ```
 
 Changes a `List` of `Char`s to a `String`. This is similar to
+`fromCharArray`.
 
 
