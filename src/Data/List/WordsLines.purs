@@ -13,7 +13,7 @@ import Data.String as String
 -- | `unwords` is an inverse operation to `words`.
 -- | It joins words with separating spaces.
 -- |
--- | However, `unlines <<< lines` is not an isomorphism.
+-- | However, `unwords <<< words` is not an isomorphism.
 unwords :: List String -> String
 unwords = foldl f ""
   where
